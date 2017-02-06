@@ -6,7 +6,8 @@ var result = document.querySelector("h2"); //to show wrong or right
 var aRed, aBlue, aGreen, red, green, blue; //a<Color> refers to answer color
 var correctColor = Math.floor(Math.random() * 6); // storing correct block number
 var data = []; // to store all the blocks rgb color as objects
-
+var isCorrect = document.querySelector("#iscorrect");
+var reset = document.querySelector("#reset");
 function changeBackground(tile)
 {
     // generating random colors using Math.random() * (max - min) + min
@@ -25,13 +26,16 @@ for(var i=0 ; i<6; i++)
     blocks[i].addEventListener("click", function(){
         if(this.style.background===blocks[correctColor].style.background)
         {
+            isCorrect.textContent="Congratulations! YOU DID IT!!"
+            reset.classList.remove("hide");
             for(var i=0; i<blocks.length; i++)
                 {
-                    blocks[i].style.background=blocks[correctColor].style.background; 
+                    blocks[i].style.background=blocks[correctColor].style.background;
                 }
         }
         else
         {
+            isCorrect.textContent="Wrong you are!";
             this.style.background="rgb(23,23,23)";
         }
         });
